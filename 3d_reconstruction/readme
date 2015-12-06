@@ -1,5 +1,7 @@
 Goal: Recovering the 3D world from 2D images tio build a high-quality 3D model of an object
 
+Uses structured light scanning for object reconstruction
+
 Problems to be solved:
 – Mesh cleanup and smoothing
 – Mesh alignment
