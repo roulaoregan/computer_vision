@@ -6,9 +6,9 @@ function [C,goodpixels] = decode(imageprefix,start,stop,threshold)
 %
 % imageprefix : a string which is the prefix common to all the images.
 %
-%                  for example, pass in the prefix '/home/fowlkes/left/left_'
-%                  to load the image sequence   '/home/fowlkes/left/left_01.jpg'
-%                                               '/home/fowlkes/left/left_02.jpg'
+%                  for example, pass in the prefix '../left/left_'
+%                  to load the image sequence   '../left/left_01.jpg'
+%                                               '../left/left_02.jpg'
 %                                                          etc.
 %
 %  start : the first image # to load
