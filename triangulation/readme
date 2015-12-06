@@ -1,0 +1,96 @@
+***********
+QUESTION 1:
+***********
+horizontal field of view (in degrees):
+
+f = focal length x (1 + magnification)
+  = 50 x (1 + 10)
+
+FOV formula: = arctan(depth/2f)
+Image: 640x480
+
+(a)Horizontal FOV: arctan(640/(2*550)) = 30.19 degrees
+(b)Vertical FOV: arctan(480/(2*550)) = 23.57 degrees
+(c)New horizontal FOV: 
+f = 100 x (1 + 10)
+arctan(640/(2*1100)) = 16.22 degrees
+
+***********
+QUESTION 2:
+***********
+
+rotate camera 45 deg in y-axis:
+[cos(45), 0, sin(45); 0, 1, 0;-sin(45), 0, cos(45)]
+translate left one metre (assuming in y axis)
+[0,-1,0]
+
+in order to describe the point (1,1,1) in this new coordinate system, we would need to multiply this point using homogenous coordinates by this transformation matrix:
+[R|t;0,1]*[1,1,1,1] = [x,y,z,1]
+
+[cos(45), 0, sin(45),  0]    	[1]		[1.4142]
+[ 0, 	   1, 	0,    -1]   *	[1]	= 	[   0  ]
+[-sin(45), 0, cos(45), 0]	[1]		[   0  ]
+[ 0,	   0, 	0,     1]	[1]		[   1  ]
+
+
+***********
+QUESTION 3:
+***********
+Estimate the extrinsic parameters for your eyes relative to a world coordinate system: 
+Baseline: assume our eyes are about 2-3cm apart
+we can find the angle that our eyes rotate by setting up a simple triangulation case such that:
+
+	_______	X
+	|      /|\
+	|     / | \
+z=40cm  |    /  |  \       
+	|thy/   |   \
+	|  /    |    \
+	| /	|     \
+	|/	|      \
+       --- 1.25 | 1.25 ----	      
+	 e1   		e2
+	baseline = 2.5cm
+
+we can find the angle "theta just finding the angle tan-theta:
+tan(1.25/40) ~= 5.45 degrees
+
+
+***********
+QUESTION 4:
+***********
+
+
+(a) the image center: I'm not sure what the image centre was exactly, I tried changing cam.c (principal point) and nothing really affected it. However, when I changed the magnification,
+ie, distorted the parameters - camL.m = [10;100] - the recovered image was stretched out in the y direction since the magnification was less on the x.
+
+(b) focal length:
+f = < 1; 
+when I changed it to .5, the recovered image was more narrower and jagged 
+at 0.01 it becomes completely distorted and looks like a very narrow triangle
+
+f = > 1;
+when I changed 'f' to 5, 50, 5000, it was less jagged around the top of the hemisphere, but it didn't really look that much different then 1; unlike if "f" is less then 1, then the difference is really noticable.
+
+(c) the translation vector:
+when I increase the distance from camL.t and camL.R the recovered shape becomes distorted. I increase the translation camL.t= [-7;0;0];
+camR.t= [7;0;0];
+And this made the image very distorted, and the bigger the distance the more distorted it became.
+However when the numbers for either camera was less than 2, ie
+camL.t= [-2;0;0];
+camR.t= [2;0;0];
+the image was okay it tilted a bit, but anything up to one recovered pretty well.
+
+
+(d) the rotation angle of one of the cameras passed into triangulate:
+when I changed thy < 10, ie:
+thy = atan2(camR.t(1), < 10); 
+the recovered image became tilted and distorted, at 1 it was really bad.
+anything greater than 10 ie
+thy = atan2(camR.t(1), > 10);
+the recovered image looked consistent
+
+
+What parameter is the reconstruction result quality most dependent on? least dependent on?
+
+I think translate vectors and the focal length have a really big impact on the recovered image. I would say that the rotational angle doesn't really have as much of an effect as the translation vector and focal length.
