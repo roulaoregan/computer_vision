@@ -1,0 +1,7 @@
+Goal: Build a high-quality 3D model of an object
+
+Problems to be solved:
+– Mesh cleanup and smoothing
+– Mesh alignment
+– Combining meshes into a final model
+– Rendering final model and adding color
