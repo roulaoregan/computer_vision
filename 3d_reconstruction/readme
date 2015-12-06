@@ -23,7 +23,7 @@ Step 2 - building the mesh, including cleaning and smoothing
 - "meshBuild.m" file generates a mesh per image. Output data of all the variables needed to stitch a build a mesh
 - cleaning includes three steps, first, remove points outside known bounding box; second,  remove points whose neighbors are further away then a given threshold; and lastly, removing triangles which have long edges. These algorithms are:
 - "nbr.error.m"
--	"nbr_smooth.m"
+- "nbr_smooth.m"
 - "tri_error.m"
 - mesh alignment algorithm combined the Rigid body alignment and the SVD  with the Iterative Closest Point (ICP) to measure how far the 3D recovered location of a point is from its neighbor and followed the algorithm:
 	1.	Estimate corresponding points.
