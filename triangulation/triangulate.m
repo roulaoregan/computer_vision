@@ -57,24 +57,20 @@ tR = -inv(camRL.R)*repmat(camRL.t,1,npts);
 %
 % for the Zs
 %
-Z_r = zeros(1,npts);
-Z_l = zeros(1,npts);
 for i = 1:npts
   A = [xRm(:,i) -xLmR(:,i)];
   Z = inv(A'*A)*A'*tR(:,i);
   Z_r(i) = Z(1);
   Z_l(i) = Z(2);
-  fprintf('\r %d/%d',i,npts);
 end
 
-%compute coordinates in left camera ref frame
+%compute coordinates in left and right camera ref frame
 XL = [Z_l;Z_l;Z_l].*[xLm(1:2,:);ones(1,npts)];
 XR = [Z_r;Z_r;Z_r].*[xRm(1:2,:);ones(1,npts)];
 
-%finally map X back to world coordinates 
+%map both back to world coordinates 
 Xa = camL.R*XL + repmat(camL.t,1,npts);
 Xb = camR.R*XR + repmat(camR.t,1,npts);
 
+%return the midpoint of the left and right camera estimates 
 X = 0.5*(Xa+Xb);
-
-
