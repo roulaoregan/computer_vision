@@ -6,8 +6,6 @@ scandir = 'C:/Users/Roula/Documents/MATLAB/Assignment_5/';
 %
 % first calibrate the left and right cameras
 %
-%[camL,xL,Xtrue] = calibrate([scandir 'left/left_calib.jpg']); %???err
-%[camR,xR,Xtrue] = calibrate([scandir 'right/right_calib.jpg']);
 [camL,xL,Xtrue] = calibrateL('C:/Users/Roula/Documents/MATLAB/Assignment_5/left/left_calib.jpg');
 [camR,xR,Xtrue] = calibrateR('C:/Users/Roula/Documents/MATLAB/Assignment_5/right/right_calib.jpg');
 %
