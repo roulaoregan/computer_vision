@@ -1,0 +1,75 @@
+Computer Vision Project that attempts to guess the dimensions of a picture of a box. Inputs are two photos of a red box, output is a guess to the real world box dimensions
+
+
+ASSIGNMENT 3 QUESTIONS:
+======================
+
+QUESTION 1: 
+
+1a: what are the recovered parameters for the left and right cameras?  
+LEFT CAMERA:
+camL.t = [42.26;3.86;33.53];
+camL.R = [-0.16,-0.98,-0.07;
+	0.63,-0.0495,-0.77;
+	0.76,-0.17, 0.63]
+camL.c = [500.00, 375.00]
+camL.f = 1
+camL.m = [958.9;-781.78]
+
+RIGHT CAMERA:
+camR.t = [52.46;20.14;30.12]
+camR.R =  [0.1,-0.99,0.09;
+	   0.52,-0.03,-0.85;
+	   0.85,0.14,0.5]
+camR.c  = [500.00, 375.00]
+camR.f = 1
+camR.m = [1068.7;-1073.09]
+
+
+1b:How far apart are the camera centers in centimeters (i.e. what is the baseline) ?
+Need to find the x-coordinate for each camera, ie [x,0,0]
+baseline = camR.t(1) - camL.t(1) 
+	 = 10.2
+So the right camera is 10.2 cm to the left of the left camera
+
+
+QUESTION 2: 
+
+(2a)We would need to calculate the distance from Xtrue and Xest from calibrate_script.
+the average error ~= 0.2985
+
+(2b) I think it could be from the error of where to click on actual image, since we're approximating the error could be in trying to optimize both the left and right camera parameters.
+
+QUESTION 3: 
+recovered fmx = 985.9 
+x dimension: 1000
+f = fmx/mx = .9859 cm (9.859 mm)
+So, yeah it's pretty resonable to Canon's published range
+
+QUESTION 4: 
+(refer to red_box.m script for details)
+
+After calling triangulate on the clicking on the dimensions of the red box for both the left and right cameras, I got vector with the 3D points, I ran this script twice, once on the top
+width and length, then again for the height, so here is my guess in centemeters:
+
+width:3.5cm
+height:2.25cm
+length:4.75cm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
